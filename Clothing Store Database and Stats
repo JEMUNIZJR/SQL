@@ -1,0 +1,44 @@
+--Create a clothing store database
+
+CREATE TABLE store (id INTEGER PRIMARY KEY, item TEXT, price INTEGER, size TEXT, quantity INTEGER);
+
+INSERT INTO store
+VALUES
+(1, "shirt", 10, "M", 90),
+(2, "shorts", 8, "S", 75),
+(3, "pants", 20, "L", 80),
+(4, "socks", 3, "fits all", 50),
+(5, "hats", 5, "fits all", 55),
+(6, "sweater", 20, "M", 65),
+(7, "jacket", 20, "L", 70),
+(8, "coat", 30, "L", 45),
+(9, "sweats", 20, "M", 80),
+(10, "jeans", 25, "M", 60),
+(11, "boxers", 5, "fits all", 40),
+(12, "gloves", 5, "fits all", 60),
+(13, "scarf", 5, "fits all", 35),
+(14, "shoes", 25, "fits all", 50),
+(15, "ear muffs", 10, "fits all", 25);
+
+--Display the database
+SELECT * FROM store;
+
+--Display the database of medium clothes ordered by price
+SELECT * FROM store
+WHERE size= "M"
+ORDER by price;
+
+--What is the average price of clothing items?
+SELECT AVG(price)
+FROM store
+
+--What are the items thhat have a fits all sizing?
+SELECT item, price, size FROM store
+Where size= "fits all"
+ORDER BY price;
+
+--What are the 5 items that have the most in stock?
+SELECT item, price, quantity FROM store
+ORDER BY quantity desc
+LIMIT 5;
+
