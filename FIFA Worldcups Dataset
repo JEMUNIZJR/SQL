@@ -1,0 +1,122 @@
+--Create a dataset with 20+ rows and use advanced SELECT queries to discover things about the data.
+
+CREATE TABLE worldcups
+    (ID INTEGER PRIMARY KEY,
+    year INTEGER,
+    host_country TEXT,
+    first_place TEXT,
+    first_final_match_goals INTEGER,
+    first_place_tourney_goals INTEGER,
+    second_place TEXT,
+    second_final_match_goals INTEGER,
+    second_place_tourney_goals INTEGER,
+    third_place TEXT,
+    third_final_match_goals INTEGER,
+    third_place_tourney_goals INTEGER,
+    fourth_place TEXT,
+    fourth_final_match_goals INTEGER,
+    fourth_place_tourney_goals INTEGER,
+    golden_ball_winner TEXT,
+    golden_ball_team TEXT,
+    golden_boot_winner TEXT,
+    golden_boot_goals INTEGER,
+    golden_boot_team TEXT,
+    golden_glove_winner TEXT,
+    golden_glove_clean_sheets INTEGER,
+    golden_glove_team TEXT,
+    golden_glove_team_goals_conceded INTEGER,
+    young_player_winner TEXT,
+    young_player_age INTEGER,
+    young_player_team TEXT,
+    player_of_the_match TEXT,
+    player_of_the_match_wins INTEGER,
+    player_of_the_match_team TEXT,
+    total_tourney_goals INTEGER,
+    fair_play_trophy TEXT);
+    
+INSERT INTO worldcups VALUES
+(1, 1930, "Uruguay", "Uruguay", 4, 15, "Argentina", 2, 18, "United States", null, 7, "Yugoslavia", null, 7, "José Nasazzi", "Uruguay", "Guillermo Stábile", 8, "Argentina", null, null, null, null, null, null, null, null, null, null, 70, null);
+INSERT INTO worldcups VALUES
+(2, 1934, "Italy", "Italy", 2, 12, "Czechoslovkia", 1, 9, "Germany", 3, 11, "Austria", 2, 7, "Giuseppe Meazza", "Italy", "Oldřich Nejedlý", 5, "Czechoslovakia", null, null, null, null, null, null, null, null, null, null, 70, null);
+INSERT INTO worldcups VALUES
+(3, 1934, "France", "Italy", 4, 11, "Hungary", 2, 15, "Brazil", 4, 14, "Sweden", 2, 11, "Leônidas", "Brazil", "Leônidas", 7, "Brazil", null, null, null, null, null, null, null, null, null, null, 84, null);
+INSERT INTO worldcups VALUES
+(4, 1950, "Brazil", "Uruguay", 2, 15, "Brazil", 1, 22, "Sweden", 3, 11, "Spain", 1, 10, "Zizinho", "Brazil", "Ademir", 9, "Brazil", null, null, null, null, null, null, null, null, null, null, 88, null);
+INSERT INTO worldcups VALUES
+(5, 1954, "Switzerland", "West Germany", 3, 25, "Hungary", 2, 27, "Austria", 3, 17, "Uruguay", 1, 16, "Ferenc Puskas", "Hungary", "Sándor Kocsis", 11, "Hungary", null, null, null, null, null, null, null, null, null, null, 140, null);
+INSERT INTO worldcups VALUES
+(6, 1958, "Sweden", "Brazil", 5, 16, "Sweden", 2, 12, "France", 6, 23, "West Germany", 3, 12, "Pelé", "Brazil", "Just Fontaine", 13, "France", null, null, null, null, "Pelé", 17, "Brazil", null, null, null, 126, null);
+INSERT INTO worldcups VALUES
+(7, 1962, "Chile", "Brazil", 3, 14, "Czechoslovakia", 1, 7, "Chile", 1, 10, "Yugoslavia", 0, 10, "Garrincha", "Brazil", "Garrincha", 4, "Brazil", null, null, null, null, "Flórian Albert", 20, "Hungary", null, null, null, 89, null);
+INSERT INTO worldcups VALUES
+(8, 1966, "England", "England", 4, 11, "West Germany", 2, 15, "Portugal", 2, 17, "USSR", 1, 10, "Bobby Charlton", "England", "Eusébio", 9, "Portugal", null, null, null, null, "Franz Beckenbauer", 20, "West Germany", null, null, null, 89, null);
+INSERT INTO worldcups VALUES
+(9, 1970, "Mexico", "Brazil", 4, 19, "Italy", 1, 10, "West Germany", 1, 17, "Uruguay", 0, 4, "Pelé", "Brazil", "Gerd Müller", 10, "West Germany", null, null, null, null, "Teófilo Cubillas", 21, "Peru", null, null, null, 95, "Peru");
+INSERT INTO worldcups VALUES
+(10, 1974, "West Germany", "West Germany", 2, 13, "Netherlands", 1, 15, "Poland", 1, 16, "Brazil", 0, 6, "Johan Cruyff", "Netherlands", "Grzegorz Lato", 7, "Poland", null, null, null, null, "Władysław Żmuda", 10, "Poland", null, null, null, 97, "West Germany");
+INSERT INTO worldcups VALUES
+(11, 1978, "Argentina", "Argentina", 3, 15, "Netherlands", 1, 15, "Brazil", 2, 10, "Italy", 1, 9, "Mario Kempes", "Argentina", "Mario Kempes", 6, "Argentina", null, null, null, null, "Antonio Cabrini", 20, "Italy", null, null, null, 102, "Argentina");
+INSERT INTO worldcups VALUES
+(12, 1982, "Spain", "Italy", 3, 12, "West Germany", 1, 12, "Poland", 3, 11, "France", 2, 16, "Paolo Rossi", "Italy", "Paolo Rossi", 6, "Italy", null, null, null, null, "Manuel Amoros", 21, "France", null, null, null, 146,"Brazil");
+INSERT INTO worldcups VALUES
+(13, 1986, "Mexico", "Argentina", 3, 14, "West Germany", 2, 8, "France", 4, 12, "Belgium", 2, 12, "Diego Maradona", "Argentina", "Gary Lineker", 6, "England", null, null, null, null, "Enzo Scifo", 20, "Belgium", null, null, null, 132, "Brazil");
+INSERT INTO worldcups VALUES
+(14, 1990, "Italy", "West Germany", 1, 15, "Argentina", 0, 5, "Italy", 2, 10, "England", 1, 8, "Salvatore Schillaci", "Italy", "Salvatore Schillaci", 6, "Italy", null, null, null, null, "Robert Prosinečki", 21, "Croatia", null, null, null, 115, "England");
+INSERT INTO worldcups VALUES
+(15, 1994, "United States", "Brazil", 0.3, 11, "Italy", 0.2, 8, "Sweden", 4, 15, "Bulgaria", 0, 10, "Romário", "Brazil", "Hristo Stoichkov", 6, "Bulgaria", "Michel Preud'homme", 2, "Belgium", 4, "Marc Overmars", 20, "Netherlands", null, null, null, 141, "Brazil");
+INSERT INTO worldcups VALUES
+(16, 1998, "France", "France", 3, 15, "Brazil", 0, 14, "Croatia", 2, 11, "Netherlands", 1, 13, "Ronaldo", "Brazil", "Davor Šuker", 6, "Croatia", "Fabien Barthez", 5, "France", 2, "Michael Owen", 18, "England", null, null, null, 171, "England/France");
+INSERT INTO worldcups VALUES
+(17, 2002, "Japan/South Korea", "Brazil", 2, 18, "Germany", 0, 14, "Turkey", 3, 10, "South Korea", 2, 8, "Oliver Kahn", "Germany", "Ronaldo", 8, "Brazil", "Oliver Kahn", 5, "Germany", 3, "Landon Donovan", 20, "United States", "Rivaldo", 3, "Brazil", 161, "Belgium");
+INSERT INTO worldcups VALUES
+(18, 2006, "Germany", "Italy", 1.5, 12, "France", 1.3, 9, "Germany", 3, 14, "Portugal", 1, 7, "Zinedine Zidane", "France", "Miroslav Klose", 5, "Germany", "Gianluigi Buffon", 5, "Italy", 2, "Lukas Podolski", 21, "Germany", "Andrea Pirlo", 3, "Italy", 147, "Brazil/Spain");
+INSERT INTO worldcups VALUES
+(19, 2010, "South Africa", "Spain", 1, 8, "Netherlands", 0, 12, "Germany", 3, 16, "Uruguay", 2, 11, "Diego Forlán", "Uruguay", "Thomas Müller", 5, "Germany", "Iker Casillas", 5, "Spain", 2, "Thomas Müller", 20, "Germany", "Wesley Sneijder", 4, "Netherlands", 145, "Spain");
+INSERT INTO worldcups VALUES
+(20, 2014, "Brazil", "Germany", 1, 18, "Argentina", 0, 8, "Netherlands", 3, 15, "Brazil", 0, 11, "Lionel Messi", "Argentina", "James Rodríguez", 6, "Colombia", "Manuel Neuer", 4, "Germany", 4, "Paul Pogba", 21, "France", "Lionel Messi", 4, "Argentina", 171, "Colombia");
+INSERT INTO worldcups VALUES
+(21, 2018, "Russia", "France", 4, 14, "Croatia", 2, 14, "Belgium", 2, 16, "England", 0, 12, "Luka Modrić", "Croatia", "Harry Kane", 6, "England", "Thibaut Courtois", 3, "Belgium", 4, "Kylian Mbappé", 19, "France", "Antoine Griezmann, Eden Hazard, Harry Kane, Luka Modrić", 3, "France, Belgium, England, Croatia", 169, "Spain");
+INSERT INTO worldcups VALUES
+(22, 2022, "Qatar", "Argentina", 3.4, 15, "France", 3.2, 16, "Croatia", 2, 8, "Morocco", 1, 6, "Lionel Messi", "Argentina", "Kylian Mbappé", 8, "France", "Emiliano Martinez", 3, "Argentina", 8, "Enzo Fernández", 21, "Argentina", "Lionel Messi", 5, "Argentina", 172, "England");
+
+
+--What are average, max, and min values in the data?
+
+SELECT MAX(golden_boot_goals) AS Most_Golden_Boot_Goal_Winner, MIN(golden_boot_goals) AS Least_Golden_Boot_Goal_Winner, AVG(golden_boot_goals) AS Average_Golden_Boot_Goals
+FROM worldcups;
+
+
+--What interesting ways are there to filter the data (using AND/OR)?
+
+SELECT year, golden_ball_winner, golden_boot_winner, golden_glove_winner, young_player_winner, player_of_the_match
+FROM worldcups
+WHERE golden_ball_team = 'Argentina'
+    AND young_player_team = 'Argentina'
+    AND golden_glove_team = 'Argentina'
+GROUP BY year;
+
+
+--What about those numbers per category in the data (using HAVING)?
+
+SELECT year, golden_boot_winner, golden_boot_goals, golden_boot_team, first_place, first_place_tourney_goals
+FROM worldcups
+GROUP BY year
+HAVING golden_boot_team = first_place
+ORDER BY golden_boot_goals DESC;
+
+
+--What ways are there to group the data values that don’t exist yet (using CASE)?
+
+SELECT year, golden_boot_team, golden_boot_goals, (golden_boot_goals * 100.0 / (SELECT SUM(golden_boot_goals)
+FROM worldcups
+    WHERE year = worldcups.year)) as percentage,
+    (CASE
+        WHEN (golden_boot_goals * 100.0 / (SELECT SUM(golden_boot_goals) 
+        FROM worldcups
+        WHERE year = worldcups.year)) >= 5 THEN 'Yes' 
+        ELSE 'No'
+    END) as more_than_5_percent
+    FROM worldcups;
+
+
+
