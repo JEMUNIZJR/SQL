@@ -1,0 +1,154 @@
+--Make your own table with some small set of “famous people”, then make more relatable tables.
+
+CREATE TABLE celebs (id INTEGER PRIMARY KEY,
+    name TEXT,
+    fame_percent INTEGER,
+    birthdate TEXT,
+    birthplace TEXT);
+    
+INSERT INTO celebs (name, fame_percent, birthdate, birthplace)
+VALUES ("Lionel Messi", 99, "4 June 1978", "Rosario, Argentina");
+INSERT INTO celebs (name, fame_percent, birthdate, birthplace)
+VALUES ("Elon Musk", 99, "28 June 1971", "Pretoria, South Africa");
+INSERT INTO celebs (name, fame_percent, birthdate, birthplace)
+VALUES ("Cristiano Ronaldo", 99, "5 February 1985", "Funchal, Portugal");
+INSERT INTO celebs (name, fame_percent, birthdate, birthplace)
+VALUES ("Barack Obama", 99, "4 August 1961", "Honolulu, Hawaii");
+INSERT INTO celebs (name, fame_percent, birthdate, birthplace)
+VALUES ("Chris Evans", 98, "13 June 1981", "Boston, Massachusetts");
+INSERT INTO celebs (name, fame_percent, birthdate, birthplace)
+VALUES ("Johnny Depp", 98, "9 June 1963", "Owensboro, Kentucky");
+INSERT INTO celebs (name, fame_percent, birthdate, birthplace)
+VALUES ("Britney Spears", 98, "2 December 1981", "McComb, Mississippi");
+INSERT INTO celebs (name, fame_percent, birthdate, birthplace)
+VALUES ("Beyoncé", 98, "4 September 1981", "Houston, Texas");
+INSERT INTO celebs (name, fame_percent, birthdate, birthplace)
+VALUES ("Jay-Z", 98, "4 December 1969", "Brooklyn, New York");
+INSERT INTO celebs (name, fame_percent, birthdate, birthplace)
+VALUES ("Oprah Winfrey", 96, "29 January 1954", "Kosciusko, Mississippi");
+
+CREATE TABLE occupation (id INTEGER PRIMARY KEY,
+    celeb_id INTEGER,
+    occupation TEXT,
+    net_worth INTEGER);
+
+INSERT INTO occupation (celeb_id, occupation, net_worth)
+VALUES (1, "Athlete", 620000000);
+INSERT INTO occupation (celeb_id, occupation, net_worth)
+VALUES (2, "Entreprenuer", 196500000000);
+INSERT INTO occupation (celeb_id, occupation, net_worth)
+VALUES (3, "Athlete", 490000000);
+INSERT INTO occupation (celeb_id, occupation, net_worth)
+VALUES (4, "Politician", 70000000);
+INSERT INTO occupation (celeb_id, occupation, net_worth)
+VALUES (5, "Actor", 110000000);
+INSERT INTO occupation (celeb_id, occupation, net_worth)
+VALUES (6, "Actor", 150000000);
+INSERT INTO occupation (celeb_id, occupation, net_worth)
+VALUES (7, "Music Artist", 70000000);
+INSERT INTO occupation (celeb_id, occupation, net_worth)
+VALUES (8, "Music Artist", 500000000);
+INSERT INTO occupation (celeb_id, occupation, net_worth)
+VALUES (9, "Music Artist", 1300000000);
+INSERT INTO occupation (celeb_id, occupation, net_worth)
+VALUES (10, "Entreprenuer", 2500000000);
+
+CREATE TABLE family (id INTEGER PRIMARY KEY,
+    celeb_id INTEGER,
+    father_name TEXT,
+    father_status TEXT,
+    mother_name TEXT,
+    mother_status TEXT,
+    spouse_name TEXT,
+    children INTEGER);
+
+INSERT INTO family (celeb_id, father_name, father_status, mother_name, mother_status, spouse_name, children)
+VALUES (1, "Jorge Messi", "A", "Celia María Cuccittini", "A", "Antonela Roccuzzo", 3);
+INSERT INTO family (celeb_id, father_name, father_status, mother_name, mother_status, spouse_name, children)
+VALUES (2, "Errol Musk", "A", "Maye Musk", "A", null, 10);
+INSERT INTO family (celeb_id, father_name, father_status, mother_name, mother_status, spouse_name, children)
+VALUES (3, "José Dinis Aveiro", "D", "Maria Dolores dos Santos Aveiro", "A", null, 5);
+INSERT INTO family (celeb_id, father_name, father_status, mother_name, mother_status, spouse_name, children)
+VALUES (4, "Barack Obama Sr.", "D", "Stanley Ann Dunham", "D", "Michelle Obama", 2);
+INSERT INTO family (celeb_id, father_name, father_status, mother_name, mother_status, spouse_name, children)
+VALUES (5, "G. Robert Evans III", "A", "Lisa Capuano", "A", null, null);
+INSERT INTO family (celeb_id, father_name, father_status, mother_name, mother_status, spouse_name, children)
+VALUES (6, "John Christopher Depp", "A", "Betty Sue Palmer", "D", null, 2);
+INSERT INTO family (celeb_id, father_name, father_status, mother_name, mother_status, spouse_name, children)
+VALUES (7, "Jamie Spears", "A", "Lynne Spears", "A", "Sam Asghari", 3);
+INSERT INTO family (celeb_id, father_name, father_status, mother_name, mother_status, spouse_name, children)
+VALUES (8, "Matthew Knowles", "A", "Tina Knowles", "A", "Jay-Z", 3);
+INSERT INTO family (celeb_id, father_name, father_status, mother_name, mother_status, spouse_name, children)
+VALUES (9, "Adnis Reeves", "D", "Gloria Carter", "A", "Beyonce", 3);
+INSERT INTO family (celeb_id, father_name, father_status, mother_name, mother_status, spouse_name, children)
+VALUES (10, "Vernon Winfrey", "D", "Vernita Lee", "D", "Stedman Graham", 1);
+
+CREATE TABLE known_for (id INTEGER PRIMARY KEY,
+    celeb_id INTEGER,
+    known_for1 TEXT,
+    known_for2 TEXT);
+    
+INSERT INTO known_for (celeb_id, known_for1, known_for2)
+VALUES (1, "F.C. Barelona", "Paris Saint Germain (PSG)");
+INSERT INTO known_for (celeb_id, known_for1, known_for2)
+VALUES (2, "Tesla", "Twitter");
+INSERT INTO known_for (celeb_id, known_for1, known_for2)
+VALUES (3, "Real Madrid", "Manchester United");
+INSERT INTO known_for (celeb_id, known_for1, known_for2)
+VALUES (4, "44th President of US", null);
+INSERT INTO known_for (celeb_id, known_for1, known_for2)
+VALUES (5, "Captain America", "Avengers");
+INSERT INTO known_for (celeb_id, known_for1, known_for2)
+VALUES (6, "Pirates of the Carribbean", "Alice in Wonderland");
+INSERT INTO known_for (celeb_id, known_for1, known_for2)
+VALUES (7, "Baby One More Time", "Oops! I did it again");
+INSERT INTO known_for (celeb_id, known_for1, known_for2)
+VALUES (8, "Single Ladies", "Drunk in Love");
+INSERT INTO known_for (celeb_id, known_for1, known_for2)
+VALUES (9, "99 Problems", "Hard Knock Life");
+INSERT INTO known_for (celeb_id, known_for1, known_for2)
+VALUES (10, "The Oprah Winfrey Show", "Oprah Winfrey Network (OWN)");
+
+--What is each celebrity most known for?
+
+SELECT celebs.name, known_for.known_for1, known_for.known_for2 FROM celebs
+JOIN known_for
+ON celebs.id = known_for.celeb_id;
+
+--Do the music artists have a spouse and children?
+
+SELECT celebs.name, family.spouse_name, family.children FROM celebs
+JOIN family
+ON celebs.id = family.celeb_id
+JOIN occupation
+ON celebs.id = occupation.celeb_id
+WHERE occupation.occupation = "Music Artist";
+
+--Show the celebrities that have a net worth of over $1 billion.
+
+SELECT celebs.name, celebs.fame_percent, occupation.occupation, occupation.net_worth FROM celebs
+JOIN occupation
+ON celebs.id = occupation.celeb_id
+WHERE occupation.net_worth > 1000000000;
+
+--Show the status of each celebrities parents using the CASE function.
+
+SELECT celebs.name, family.spouse_name, SUM(occupation.net_worth) as combined_net_worth FROM celebs
+JOIN occupation
+ON celebs.id = occupation.celeb_id
+JOIN family
+ON celebs.id = family.celeb_id
+WHERE celebs.name IN ("Jay-Z", "Beyoncé");
+
+SELECT celebs.name, occupation.occupation, 
+       CASE 
+            WHEN family.father_status = "A" AND family.mother_status = "A" THEN "Both             alive"
+            WHEN family.father_status = "D" AND family.mother_status = "A" THEN                   "Father deceased"
+            WHEN family.father_status = "A" AND family.mother_status = "D" THEN                   "Mother deceased"
+            WHEN family.father_status = "D" AND family.mother_status = "D" THEN "Both             deceased"
+            ELSE "Unknown"
+        END AS parent_status
+FROM celebs
+JOIN occupation ON celebs.id = occupation.celeb_id
+JOIN family ON celebs.id = family.celeb_id;
+
