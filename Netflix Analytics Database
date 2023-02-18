@@ -15,8 +15,8 @@
 
 #3. When was the most recent tv show and/or movie added to the database?
 
-    SELECT MAX(date(date_added))
-    FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info";
+    SELECT MAX(titles.date_added)
+    FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles;
 
 #4. List all the movies and tv shows in alphabetical order.
 
