@@ -1,0 +1,120 @@
+# In this SQL code I am showing the process of my code while completing the SQL Murder Mystery game from mystery.knightlab.com
+# The game objective is to find the person who committed the murder using SQL from the database in the game
+
+
+-- I first began to review the different tables and what data they contain
+
+    SELECT name FROM sqlite_master
+    WHERE type = 'table';
+  
+    SELECT sql FROM sqlite_master
+    WHERE name = '```insert table name here```';
+
+-- I first started by finding the incident in the crime scene report
+
+    SELECT type, city, description FROM crime_scene_report
+    WHERE type = 'murder'
+    AND city = 'SQL City';
+
+-- I then identified the witnesses
+
+    SELECT name, address_number, address_street_name FROM person
+    WHERE address_street_name = 'Northwestern Dr'
+    ORDER BY address_number desc
+    LIMIT 1;
+    
+    SELECT name, address_number, address_street_name FROM person
+    WHERE name LIKE '%Annabel%'
+    AND address_street_name = 'Franklin Ave';
+
+-- I then found their interview statements
+
+    SELECT p.name, i.transcript FROM person p
+    JOIN interview iON p.id = i.person_id
+    WHERE p.name = 'Morty Schapiro'
+    OR p.name = 'Annabel Miller';
+
+-- Next, I searched for the suspect based on the witnesses statements
+
+    SELECT p.name, gfn.id, gfn.membership_status, dl.plate_number FROM person p
+    JOIN get_fit_now_member gfn
+    ON p.id = gfn.person_id
+    JOIN drivers_license dl
+    ON p.license_id = dl.id
+    WHERE gfn.id LIKE '48Z%'
+    AND dl.plate_number LIKE '%H42W%';
+
+-- I then entered the name of the suspect into the solution
+
+    INSERT INTO solution VALUES (1, '```Insert murderer name here```');
+    
+    SELECT value FROM solution;
+
+
+# Upon entering the answer there was a message that appeared
+# It stated:
+
+# "Congrats, you found the murderer! 
+# But wait, there's more...
+# If you think you're up for a challenge, 
+# try querying the interview transcript of the murderer to find the real villain behind this crime.
+# If you feel especially confident in your SQL skills,
+# try to complete this final step with no more than 2 queries.
+# Use this same INSERT statement with your new suspect to check your answer."
+
+
+-- I continued to query the transcript from the person who committed the murder
+
+    SELECT p.name, i.transcript FROM person p
+    JOIN interview i
+    ON p.id = i.person_id
+    WHERE p.name = '```Insert murderer name here';
+
+-- I then wrote a query to find the person behind the murder based on the transcript
+
+    SELECT p.name, dl.height, dl.hair_color, dl.car_make, dl.car_model, fb.event_name, fb.date FROM person p
+    JOIN drivers_license dl
+    ON p.license_id = dl.id
+    JOIN facebook_event_checkin fb
+    ON p.id = fb.person_id
+    WHERE dl.height BETWEEN 65 AND 67
+    AND dl.hair_color = 'red'
+    AND dl.car_make = 'Tesla'
+    AND dl.car_model LIKE '%S%'
+    AND fb.event_name LIKE '%Symphony%'
+    AND fb.date LIKE '201712__'
+
+-- After finding the culprit I entered the name into the solution
+
+    INSERT INTO solution VALUES (1, 'Miranda Priestly');
+    
+    SELECT value FROM solution;
+
+
+# Upon entering the name another message appeared stating:
+
+# Congrats, you found the brains behind the murder!
+# Everyone in SQL City hails you as the greatest SQL detective of all time.
+# Time to break out the champagne!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
