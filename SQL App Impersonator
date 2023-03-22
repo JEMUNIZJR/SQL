@@ -1,0 +1,31 @@
+#In this SQL database I have created a table similar to how an app stores information based on high scores for a game.
+#I then write queries that demonstrate modifying the existing table within the database.
+
+CREATE TABLE high_scores
+(player_name TEXT,
+  score INTEGER,
+  level INTEGER,
+  date_played TEXT);
+
+INSERT INTO high_scores (player_name, score, level, date_played)
+VALUES ('John', 5000, 10, '2022-03-25');
+INSERT INTO high_scores (player_name, score, level, date_played)
+VALUES ('Max', 3400, 8, '2022-08-08');
+INSERT INTO high_scores (player_name, score, level, date_played)
+VALUES ('Zeke', 4900, 9, '2022-09-13');
+INSERT INTO high_scores (player_name, score, level, date_played)
+VALUES ('Marco', 5300, 10, '2022-12-05');
+INSERT INTO high_scores (player_name, score, level, date_played)
+VALUES ('Dram', 7000, 12, '2021-02-21');
+
+UPDATE high_scores
+SET score = 6000
+WHERE player_name = 'John' AND level = 10;
+
+SELECT * FROM high_scores;
+
+DELETE FROM high_scores
+WHERE player_name = 'Max'
+AND level = 8;
+
+SELECT * FROM high_scores;
