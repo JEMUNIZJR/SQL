@@ -35,8 +35,9 @@
 
 
 #6. What is the oldest movie in the database and what year was it made?
-SELECT titles.title, titles.release_year
-FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles
-ORDER BY titles.release_year asc
-LIMIT 1;
+
+    SELECT titles.title, titles.release_year
+    FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles
+    ORDER BY titles.release_year asc
+    LIMIT 1;
 
