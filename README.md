@@ -1,3 +1,8 @@
-# José Muñiz Jr's SQL Portfolio
+# Welcome to my SQL repository!
 
-## Welcome to my SQL Portfolio! This code repository contains examples of SQL I've written. Feel free to take a look and reach out if you have any questions: josemunizjr7@gmail.com
+### This repository hosts a collection of SQL code examples and projects that I've written. It encompasses a variety of SQL scripts, spanning from simple queries to more complex data analysis.
+
+### If you have any questions, please feel free to reach out to me!
+
+#### https://www.linkedin.com/in/jemunizjr/
+#### josemunizjr7@gmail.com
