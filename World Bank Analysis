@@ -1,85 +1,85 @@
-## In this project, I have used live data from the World Bank website to analyze their loans data and provide insights using basic SQL queries.
+# In this project, I have used live data from the World Bank website to analyze their loan data and provide insights using basic SQL queries.
 
 
 
-### 1. How many rows are in this dataset (also the total amount of transactions)?
+# 1. How many rows are in this dataset / How many transactions are in this dataset?
 
         SELECT COUNT(*) FROM Banking_Data;
 
-#####        Answer: 1,170,391 rows / total transations
+#        Answer: 1,170,391 rows / total transactions
 
-### 2. Return all of the columns in the table (to see the data I'm working with).
+# 2. Return all the columns in the table (to see the data I'm working with).
 
         SELECT * FROM Banking_Data;
 
-#####        Answer: Credit # | Reigon | Country | Borrower | Credit Status | Due to IDA (US$) | etc.
+#        Answer: Credit # | Reigon | Country | Borrower | Credit Status | Due to IDA (US$) | etc.
 
-### 3. Return all rows for Borrower, and Due to IDA columns.
+# 3. Return all rows for Borrower, and Due to IDA columns.
 
         SELECT Borrower, "Due to IDA (US$)" FROM Banking_Data
 
-### 4. Only show the first five rows of the previous query.
+# 4. Only show the first five rows of the previous query.
 
         SELECT Borrower, "Due to IDA (US$)" FROM Banking_Data
         LIMIT 5;
 
-### 5. Show all transaction from the country Nicaragua.
+# 5. Show all transactions from the country of Nicaragua.
 
         SELECT * FROM Banking_Data
         WHERE Country = 'Nicaragua';
 
-### 6. How many transaction has Nicaragua made?
+# 6. How many transactions has Nicaragua made?
 
         SELECT COUNT(*) FROM Banking_Data
         WHERE Country = 'Nicaragua';
 
-#####        ANSWER: 14,358 transactions
+#        ANSWER: 14,358 transactions
 
-### 7. How many transactions per country?
+# 7. How many transactions per country?
 
         SELECT Country, COUNT(*) AS Transactions FROM Banking_Data
         GROUP BY Country
         ORDER BY Transaction desc;
 
-#####        ANSWER: India – 60,979 | Bangladesh – 43,077 | Pakistan – 37,039 | Tanzania – 35,736 | etc.
+#        ANSWER: India – 60,979 | Bangladesh – 43,077 | Pakistan – 37,039 | Tanzania – 35,736 | etc.
 
-### 8. How many transactions per region?
+# 8. How many transactions per region?
 
         SELECT Region, COUNT("Due to IDA (US$)") AS Transactions FROM Banking_Data
         GROUP BY Region
         ORDER BY Transactions desc;
 
-#####        Answer: Africa – 437,557 | South Asia – 206,714 | East Asia & Pacific 117,873 | Europe & Central Asia 100,813 | etc.
+#        Answer: Africa – 437,557 | South Asia – 206,714 | East Asia & Pacific 117,873 | Europe & Central Asia 100,813 | etc.
 
-### 9. What regions owe the most to the IDA?
+# 9. What regions owe the most to the IDA?
 
         SELECT Region, MAX("Due to IDA (US$)") AS Amount_Owed FROM Banking_Data
         GROUP BY Region
         ORDER BY Amount_Owed desc;
 
-#####        Answer: South Asia – $793,256,127.64 | Africa East – $780,555,197.55 | Europe & Central Asia – $761,489,481.13 | Africa – 751,130,459.68 | etc.
+#        Answer: South Asia – $793,256,127.64 | Africa East – $780,555,197.55 | Europe & Central Asia – $761,489,481.13 | Africa – 751,130,459.68 | etc.
 
-### 10. What countries owe the most to the IDA?
+# 10. What countries owe the most to the IDA?
 
         SELECT Country, "Due to IDA (US$)" AS Amount_Owed FROM Banking_Data
         GROUP BY Country
         ORDER BY Amount_Owed desc;
 
-#####        Answer: India – $793,256,127.64 | Kenya – $780,555,197.55 | Ukraine – $761,489,481.13 | Nigeria – $715,372,514.35 | etc.
+#        Answer: India – $793,256,127.64 | Kenya – $780,555,197.55 | Ukraine – $761,489,481.13 | Nigeria – $715,372,514.35 | etc.
 
-### 11. What is the total amount owed to the IDA?
+# 11. What is the total amount owed to the IDA?
 
         SELECT SUM("Due to IDA (US$)") FROM Banking_Data;
 
-#####        Answer: $21,274,902,818,522.27
+#        Answer: $21,274,902,818,522.27
 
-### 12. What is the average service charge rate for a loan?
+# 12. What is the average service charge rate for a loan?
 
         SELECT AVG("Service Charge Rate") FROM Banking_Data;
 
-#####        Answer: .785
+#        Answer: .785
 
-### 13. What country has the highest service charge rate for a loan?
+# 13. What country has the highest service charge rate for a loan?
 
         SELECT Country, MAX("Service Charge Rate") AS Highest_Rate FROM Banking_Data
         WHERE "Service Charge Rate" <> 0
@@ -87,9 +87,9 @@
         GROUP BY Country
         ORDER BY Highest_Rate desc;
 
-#####        ANSWER: India – 6.52
+#        ANSWER: India – 6.52
 
-### 14. Who has the lowest service charge rate?
+# 14. Who has the lowest service charge rate?
 
         SELECT Country, MIN("Service Charge Rate") AS Lowest_Rate FROM Banking_Data
         WHERE "Service Charge Rate" IS NOT NULL
@@ -108,16 +108,16 @@
         SELECT COUNT(*) FROM Banking_Data
         WHERE "Service Charge Rate" = 0.75;
 
-#####        Answer 1: 84,361 countries have a service charge rate of 0
-#####        Answer 2: 901,259 countries have a service charge rate of 0.75
+#        Answer 1: 84,361 countries have a service charge rate of 0
+#        Answer 2: 901,259 countries have a service charge rate of 0.75
 
-### 15. What country has repaid the most & least amount to the IDA?
+# 15. What country has repaid the most & least amount to the IDA?
 
         SELECT Country, MAX("Repaid to IDA (US$)") AS Amount_Repaid FROM Banking_Data
         GROUP BY Country
         ORDER BY Amount_Repaid desc;
 
-#####        Answer: Democratic Republic of Congo – $561,766,292
+#        Answer: Democratic Republic of Congo – $561,766,292
 
         SELECT Country, MIN("Repaid to IDA (US$)") AS Amount_Repaid FROM Banking_Data
         GROUP BY Country
@@ -128,13 +128,13 @@
         GROUP BY Country
         ORDER BY Amount_Repaid asc;
 
-#####        Answer 1: 116 Countries have NOT repaid the IDA at all.
-#####        Answer 2: Zimbabwe – $3.57
+#        Answer 1: 116 Countries have NOT repaid the IDA at all.
+#        Answer 2: Zimbabwe – $3.57
 
-### 16. What is the average amount that has been repaid to the IDA?
+# 16. What is the average amount that has been repaid to the IDA?
 
         SELECT AVG("Repaid to IDA (US$)") FROM Banking_Data;
 
-#####        Answer: ~$11,773,019.84
+#        Answer: ~$11,773,019.84
 
 
