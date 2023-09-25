@@ -1,0 +1,107 @@
+# In this project I will be pretend I was hired by UC Irvine Health to gather insights from their healthcare data.
+# The dataset can be found here: https://www.kaggle.com/code/iabhishekofficial/prediction-on-hospital-readmission/data?select=diabetic_data.csv
+
+
+# 1. What does the distribution of time spent in the hospital looks like? Do the majority of patients stay less than 7 days?
+
+        SELECT ROUND(time_in_hospital, 1) AS duration, 
+        COUNT(*) AS count,
+        RPAD('', COUNT(*)/100, '*') AS bar 
+        FROM health
+        GROUP BY duration
+        ORDER BY duration;
+
+#        Result: A histogram showing that the majority of patients do stay shorter than 7 days. (3 days- most, 2 days- second most, 1 day- third most, 4 days- fourth most, etc.)
+
+# 2. What medical specialties are doing the most number of procedures on average? Gather a list of the average number of procedures for all the specialties.
+
+        SELECT medical_specialty, ROUND(AVG(num_procedures),2) AS avg_procedures, COUNT(*) AS count FROM health
+        GROUP BY medical_specialty
+        HAVING count >= 50
+        AND avg_procedures >= 2.5
+        ORDER BY avg_procedures desc;
+
+#        Result: List of medical specialties, average procedures, and count of the number of patients.
+#        Note: The director is looking for a list of specialties with more than 50 patients and the average amount of procedures to be above 2.5
+
+        SELECT medical_specialty, ROUND(AVG(num_procedures),2) AS avg_procedures, COUNT(*) AS count FROM health
+        GROUP BY medical_specialty
+        HAVING count >= 50
+        AND avg_procedures >= 2.5
+        ORDER BY avg_procedures desc;
+
+#        Result: Surgery: Thoracic – 3.5 (avg_procedures) – 109 (patients) | Surgery: Cardio/Thoracic – 3.2 – 652 | Radiologist – 3.2 – 1140 | Cardiology – 2.7 – 5352 | Surgery: Vascular – 2.6 – 533 
+
+# 3. Is the hospital treating patients of different races differently? Specifically with the number of lab procedures done.
+
+        SELECT dem.race, ROUND(AVG(heal.num_lab_procedures),2), COUNT(*) AS count FROM demographics dem
+        JOIN health heal
+        ON dem.patient_nbr = heal.patient_nbr
+        GROUP BY dem.race
+        ORDER BY AVG(heal.num_lab_procedures) desc;
+
+#        Result: (African American – 44.46 | ? – 44.28 | Other – 43.58 | Caucasian – 42.61 | Asian – 42.19 | Hispanic – 41.81)
+#        Note: No major differences in the average lab procedures across races.
+
+# 4. Do patients with multiple lab procedures stay in the hospital longer? / What is the correlation between the number of lab procedures and the 
+
+        SELECT MIN(num_lab_procedures), AVG(num_lab_procedures), MAX(num_lab_procedures) FROM health;
+#        Note: Checking the minimum, average, and maximum number of lab procedures done to create categories for the amounts (few, average, many).
+
+        SELECT ROUND(AVG(time_in_hospital),2) AS avg_time,
+        CASE
+        	WHEN num_lab_procedures >= 0 AND num_lab_procedures <= 33 THEN 'Few Procedures'
+            WHEN num_lab_procedures >=34 AND num_lab_procedures <= 65 THEN 'Average Procedures'
+            ELSE 'Many Procedures'
+            END AS procedure_frequency
+        FROM health
+        GROUP BY procedure_frequency
+        ORDER BY avg_time_in_hospital desc;
+
+#        Result: 6.41 (avg_time) – Many Procedures | 4.46 – Average Procedures | 3.38 – Few Procedures
+#        Note: There is a correlation. Patients with longer stays tend to have more procedures done.
+
+# 5. I need a list of patient IDs who are African American and are taking metformin (for a medical test being done by the research department).
+
+        SELECT patient_nbr FROM demographics
+        WHERE race = 'AfricanAmerican'
+        UNION
+        SELECT patient_nbr FROM health
+        WHERE metformin = 'Up';
+
+#        Result: List of patient numbers who meet the criteria.
+
+# 6. Provide a list of patients who were an emergency admissions but stayed less than the average time in the hospital (highlighting the success stories of the hospital).
+
+        SELECT * FROM health
+        WHERE admission_type_id = 1
+        AND time_in_hospital < (SELECT AVG(time_in_hospital) FROM health);
+
+        OR
+
+        WITH avg_time AS (SELECT AVG(time_in_hospital) FROM health)
+        SELECT * FROM health
+        WHERE admission_type_id = 1
+        AND time_in_hospital < (SELECT * FROM avg_time);
+
+#        Result: List of data that meets the criteria of emergency admissions & lower than average time spent in the hospital.
+
+# 7. Our boss has asked us to write a summary for the top 50 medication patients.
+#        They want the format like this: "Patient 2383 was Caucasian and was readmitted. They had 21 medications and 32 lab procedures."
+
+        SELECT CONCAT_WS(' ', 'Patient', d.patient_nbr, 'was', d.race, 'and',
+        (CASE
+        	WHEN h.readmitted = 'NO' THEN 'was not'
+            ELSE 'was'
+        END),
+        'readmitted. They had', h.num_medications, 'medications and', h.num_lab_procedures, 'lab procedures.') AS summary
+        FROM health h
+        JOIN demographics d
+        ON h.patient_nbr = d.patient_nbr
+        ORDER BY h.num_medications desc, h.num_lab_procedures desc
+        LIMIT 50;
+
+#        Result: Patient 30281670 was Hispanic and was not readmitted. They had 9 medications and 96 lab procedures. | Patient 23964678 was Caucasian and was not readmitted. They had 9 medications and 94 lab procedures. | Patient 85246299 was Caucasian and was readmitted. They had 9 medications and 90 lab procedures. | etc.
+
+
+
