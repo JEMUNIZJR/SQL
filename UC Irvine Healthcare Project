@@ -51,9 +51,9 @@
         SELECT ROUND(AVG(time_in_hospital),2) AS avg_time,
         CASE
         	WHEN num_lab_procedures >= 0 AND num_lab_procedures <= 33 THEN 'Few Procedures'
-            WHEN num_lab_procedures >=34 AND num_lab_procedures <= 65 THEN 'Average Procedures'
-            ELSE 'Many Procedures'
-            END AS procedure_frequency
+                WHEN num_lab_procedures >=34 AND num_lab_procedures <= 65 THEN 'Average Procedures'
+                ELSE 'Many Procedures'
+                END AS procedure_frequency
         FROM health
         GROUP BY procedure_frequency
         ORDER BY avg_time_in_hospital desc;
